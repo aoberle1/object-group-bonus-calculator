@@ -48,10 +48,58 @@ console.log('array of employee data: ',  employees );
 
 // This function will calculate 1 employee's bonus!
 //
-function calculateIndividualEmployeeBonus( employee ) {  
+function calculateIndividualEmployeeBonus( employee ) {
+    let bonusPercentage = 0 ; 
+    let maxBonus = .13
+      if ( employee.reviewRating === 3){
+      bonusPercentage = bonusPercentage + .04;
+      }
+        else if( employee.reviewRating === 4){
+          bonusPercentage = bonusPercentage + .06;
+        }
+        else if( employee.reviewRating === 5){
+          bonusPercentage = bonusPercentage + .10;
+        }
+        else {
+          bonusPercentage = bonusPercentage
+        }
+      if ( employee.employeeNumber.length < 5){
+        bonusPercentage = bonusPercentage + .05;
+      }
+      if ( employee.annualSalary > '65000' ) {
+      bonusPercentage = bonusPercentage - .01
+      }
+      if ( bonusPercentage > maxBonus) {
+        bonusPercentage = maxBonus
+      }
+      if ( bonusPercentage < 0 ){
+        bonusPercentage = 0
+      }
   // your logic here
+    
   
-  
+  return bonusPercentage;
   // return new object with bonus results
 
+}
+console.log( calculateIndividualEmployeeBonus( employees[0] ));
+
+  for ( let i = 0; i < employees.length; i++ ){
+    console.log( 'This is:', employees[i]);
+  }
+  for (let i = 0; i < employees.length; i++) {
+    console.log(declareEmployee( employees[i] )); 
+  }
+
+  
+
+function declareEmployee( employee ) {
+
+let newEeData = {
+  name: employee.name,
+  bonusPercentage: calculateIndividualEmployeeBonus(employee),
+  totalBonus: employee.annualSalary * calculateIndividualEmployeeBonus(employee),
+  totalCompensation: employee.annualSalary += employee.annualSalary * calculateIndividualEmployeeBonus(employee)
+};
+  return newEeData
 }
